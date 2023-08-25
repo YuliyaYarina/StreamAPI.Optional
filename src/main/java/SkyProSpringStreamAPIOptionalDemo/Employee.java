@@ -3,44 +3,52 @@ package SkyProSpringStreamAPIOptionalDemo;
 import java.util.List;
 import java.util.Objects;
 
+import static org.springframework.util.StringUtils.capitalize;
+
 public class Employee {
 
-    private static int idGenerator = 1;
-    private final int id;
-    private final String fullName;
+    private final String firstName;
+    private final String lastName;
+    private int salary;
     private int department;
-    private int selary;
 
-    public Employee(String fullName, int department, int selary) {
-        this.id = idGenerator++;
-        this.fullName = fullName;
+    public Employee(String firstName, String lastName, int salary, int department) {
+        this.firstName = capitalize(firstName.toLowerCase());
+        this.lastName = capitalize(lastName.toLowerCase());
         this.department = department;
-        this.selary = selary;
+        this.salary = salary;
     }
 
-    public static int getIdGenerator() {
-        return idGenerator;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getFullName() {
-        return fullName;
+    public Employee(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     public int getDepartment() {
         return department;
     }
 
-    public int getSelary() {
-        return selary;
+    public int getSalary() {
+        return salary;
     }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
 
     @Override
     public String toString() {
-        return String.format("id: %d, ФИО: %s, ЗП: %d, № отдела: %d", id, fullName, selary, department);
+        return "Employee{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", department=" + department +
+                ", salary=" + salary +
+                '}';
     }
 
     @Override
@@ -48,11 +56,10 @@ public class Employee {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return id == employee.id && department == employee.department && selary == employee.selary && Objects.equals(fullName, employee.fullName);
+        return Objects.equals(firstName, employee.firstName) && Objects.equals(lastName, employee.lastName);
     }
-
     @Override
     public int hashCode() {
-        return Objects.hash(id, fullName, department, selary);
+        return Objects.hash(firstName, lastName);
     }
 }

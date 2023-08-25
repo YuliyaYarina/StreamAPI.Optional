@@ -1,7 +1,8 @@
 package SkyProSpringStreamAPIOptionalDemo.controller;
 
+import SkyProSpringStreamAPIOptionalDemo.DepartmentService;
 import SkyProSpringStreamAPIOptionalDemo.Employee;
-import SkyProSpringStreamAPIOptionalDemo.service.EmployeeService;
+import SkyProSpringStreamAPIOptionalDemo.EmployeeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,48 +11,49 @@ import java.util.Collection;
 
 @RestController
 @RequestMapping(path = "/employee")
-public class EmployeeController {
+public class EmployeeController implements EmployeeService {
 ///departments/max-salary?departmentId=5
 
-    @ExceptionHandler({RuntimeException.class})
-    public ResponseEntity<String> handleException(Exception e) {
-        ResponseEntity<String> responseEntity = new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        System.out.println(responseEntity);
-        return responseEntity;
-    }
     private final EmployeeService employeeService;
-    public EmployeeController(EmployeeService employeeService){
+
+    public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
-    @GetMapping( "/")
-    public String helloy(){
-        return "hello";
+
+    @ExceptionHandler
+    public ResponseEntity<String> handleEmployeeException(RuntimeException e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
-
-
-//    @GetMapping(path = "/max-salary")
-//    public Employee maxSalary(@RequestParam Integer departmentId){
-//        return employeeService.findEmployeeWitMaxSalary();
-//    }
-//
-//    @GetMapping(path = "/min-salary")
-//    public Employee minSalary(@RequestParam Integer departmentId){
-//        return employeeService.findMinSalaryByDepartment(departmentId);
-//    }
-//
-//    @GetMapping(path = "/all")
-//    public Employee allDepartmentId(@RequestParam Integer departmentId){
-//        return employeeService.getEmployeeByDepartment();
-//    }
-//
-    @GetMapping(path = "/all")
-    public Collection<Employee> all(){
-        return employeeService.getAll();
+    @GetMapping("/")
+    public String hello() {
+        return "HELLO";
     }
-    @GetMapping(path = "/generate")
-    public void generate(@RequestParam int x ){
-        employeeService.ZapolnenieColl(x);
+
+    //    http://localhost:8080/employee/add?firstName=Ivan1&lastName=Ivanov1&salary=10000&department=1
+    @GetMapping("/add")
+    public Employee addEmployee(@RequestParam("firstName") String firstName,
+                                @RequestParam("lastName") String lastName,
+                                @RequestParam("salary") int salary,
+                                @RequestParam("department") int department) {
+        return employeeService.addEmployee(firstName, lastName, salary, department);
+    }
+
+    @GetMapping("/find")
+    public Employee findEmployee(@RequestParam("firstName") String firstName,
+                                 @RequestParam("lastName") String lastName) {
+        return employeeService.findEmployee(firstName, lastName);
+    }
+
+    @GetMapping("/remove")
+    public Employee removeEmployee(@RequestParam("firstName") String firstName,
+                                   @RequestParam("lastName") String lastName) {
+        return employeeService.removeEmployee(firstName, lastName);
+    }
+
+    @GetMapping
+    public Collection<Employee> findAllEmployees() {
+        return employeeService.findAllEmployees();
     }
 
 }
