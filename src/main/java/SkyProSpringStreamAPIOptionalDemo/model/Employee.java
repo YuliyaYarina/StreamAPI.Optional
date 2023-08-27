@@ -1,6 +1,5 @@
-package SkyProSpringStreamAPIOptionalDemo;
+package SkyProSpringStreamAPIOptionalDemo.model;
 
-import java.util.List;
 import java.util.Objects;
 
 import static org.springframework.util.StringUtils.capitalize;

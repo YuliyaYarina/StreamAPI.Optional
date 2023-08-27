@@ -1,8 +1,7 @@
 package SkyProSpringStreamAPIOptionalDemo.controller;
 
-import SkyProSpringStreamAPIOptionalDemo.DepartmentService;
-import SkyProSpringStreamAPIOptionalDemo.Employee;
-import SkyProSpringStreamAPIOptionalDemo.EmployeeService;
+import SkyProSpringStreamAPIOptionalDemo.model.Employee;
+import SkyProSpringStreamAPIOptionalDemo.service.EmployeeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

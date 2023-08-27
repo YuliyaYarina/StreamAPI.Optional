@@ -1,10 +1,10 @@
-package SkyProSpringStreamAPIOptionalDemo.service;
+package SkyProSpringStreamAPIOptionalDemo.service.impl;
 
-import SkyProSpringStreamAPIOptionalDemo.Employee;
-import SkyProSpringStreamAPIOptionalDemo.EmployeeService;
+import SkyProSpringStreamAPIOptionalDemo.model.Employee;
 import SkyProSpringStreamAPIOptionalDemo.exception.EmployeeAlreadyAddedException;
 import SkyProSpringStreamAPIOptionalDemo.exception.EmployeeNotFoundException;
 import SkyProSpringStreamAPIOptionalDemo.exception.InvalidInputException;
+import SkyProSpringStreamAPIOptionalDemo.service.EmployeeService;
 import org.springframework.stereotype.Service;
 
 import java.util.*;

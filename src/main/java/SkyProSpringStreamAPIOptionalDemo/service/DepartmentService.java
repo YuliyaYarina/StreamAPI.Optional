@@ -1,4 +1,6 @@
-package SkyProSpringStreamAPIOptionalDemo;
+package SkyProSpringStreamAPIOptionalDemo.service;
+
+import SkyProSpringStreamAPIOptionalDemo.model.Employee;
 
 import java.util.List;
 import java.util.Map;
