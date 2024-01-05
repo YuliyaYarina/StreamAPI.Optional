@@ -22,17 +22,17 @@ public class DepartmentController {
     }
 
     @GetMapping("/min-salary")
-    public Optional<Employee> minSalaryByDepartment(@RequestParam("department") int department) {
+    public Optional<Employee> minSalaryByDepartment(@RequestParam int department) {
         return departmentService.findEmployeeMinSalaryByDepartment(department);
     }
 
     @GetMapping("/max-salary")
-    public Optional<Employee> maxSalaryByDepartment(@RequestParam("department") int department) {
+    public Optional<Employee> maxSalaryByDepartment(@RequestParam int department) {
         return departmentService.findEmployeeMaxSalaryByDepartment(department);
     }
 
     @GetMapping("/all")
-    public List<Employee> allEmployeesByDepartment(@RequestParam("department") int department) {
+    public List<Employee> allEmployeesByDepartment(@RequestParam int department) {
         return departmentService.allEmployeesByDepartment(department);
     }
 

@@ -28,7 +28,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         if (employeeMap.containsKey(firstName + lastName)) {
             throw new EmployeeAlreadyAddedException("Такой сотрудник уже существует");
         }
-        employeeMap.put((firstName + lastName),new Employee(firstName, lastName, salary, department));
+        employeeMap.put((firstName + lastName),
+                new Employee(firstName, lastName, salary, department));
         return employeeMap.get(firstName + lastName);
     }
 
@@ -62,5 +63,4 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new InvalidInputException("incorrect name or surname");
         }
     }
-
 }

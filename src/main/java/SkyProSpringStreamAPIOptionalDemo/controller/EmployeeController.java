@@ -2,6 +2,7 @@ package SkyProSpringStreamAPIOptionalDemo.controller;
 
 import SkyProSpringStreamAPIOptionalDemo.model.Employee;
 import SkyProSpringStreamAPIOptionalDemo.service.EmployeeService;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,24 +13,14 @@ import java.util.Collection;
 @RequestMapping(path = "/employee")
 public class EmployeeController implements EmployeeService {
 ///departments/max-salary?departmentId=5
+    private EmployeeService employeeService;
 
-    private final EmployeeService employeeService;
-
-    public EmployeeController(EmployeeService employeeService) {
-        this.employeeService = employeeService;
-    }
 
     @ExceptionHandler
     public ResponseEntity<String> handleEmployeeException(RuntimeException e) {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
-    @GetMapping("/")
-    public String hello() {
-        return "HELLO";
-    }
-
-    //    http://localhost:8080/employee/add?firstName=Ivan1&lastName=Ivanov1&salary=10000&department=1
     @GetMapping("/add")
     public Employee addEmployee(@RequestParam("firstName") String firstName,
                                 @RequestParam("lastName") String lastName,
